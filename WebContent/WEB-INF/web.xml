@@ -3,7 +3,7 @@
   <display-name>Jee_abscence</display-name>
    <servlet>
   	<servlet-name>cs</servlet-name>
-  	<servlet-class>web.ControleurServlet</servlet-class>
+  	<servlet-class>admin.web.ControleurServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>cs</servlet-name>

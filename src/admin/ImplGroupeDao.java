@@ -38,7 +38,7 @@ public class ImplGroupeDao implements IGroupeDao{
 		List<groupe> groupes=new ArrayList<groupe>();
 		try {
 			PreparedStatement ps=connecton.prepareStatement
-					("SELECT * FROM Groupe WHERE DESIGNATION Like ?");
+					("SELECT * FROM Groupe WHERE Nom_groupe Like ?");
 			ps.setString(1,mc);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){

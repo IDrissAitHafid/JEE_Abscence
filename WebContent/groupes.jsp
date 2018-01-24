@@ -1,12 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Abscence</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
 </head>
 <body>
 
+<div class="container col-md-10 col-md-offset-1">
+	<div class="panel panel-primary">
+		<div class="panel-heading">Recherche des groupes</div>
+		<div class="panel-body">
+			<form action="chercher.do">
+				<label class="control-label">Recherche</label>
+				<input id="motCle" name="motCle" value="${model.motCle}"/>
+				<button class="btn btn-primary">Chercher</button>
+			</form>
+			<table class="table table-striped">
+				<tr>
+					<th>ID</th><th>Nom Groupe</th><th>UE</th>
+				</tr>
+				<c:forEach items="${model.groupes}" var="g">
+					<tr>
+						<td>${ g.id_groupe }</td>
+<%-- 						<td>${ g.Nom_groupe }</td> --%>
+						<td>${ g.UE }</td>
+<%-- 						<td><a onclick="return confirm('Etes vous sûre?')"  href="supprime.do?id=${p.id}">Supprimer</a></td> --%>
+<%-- 						<td><a href="edit.do?id=${p.id}">Edit</a></td> --%>
+					</tr>
+				</c:forEach> 
+				 
+			</table>
+		</div>
+	</div>
+</div>
 </body>
 </html>
