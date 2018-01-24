@@ -16,6 +16,14 @@ public class groupe implements Serializable {
 		Nom_groupe = nom_groupe;
 		UE = uE;
 	}
+	
+	public int getId_groupe() {
+		return id_groupe;
+	}
+
+	public void setId_groupe(int id_groupe) {
+		this.id_groupe = id_groupe;
+	}
 
 	public String getNom_groupe() {
 		return Nom_groupe;
@@ -28,6 +36,12 @@ public class groupe implements Serializable {
 	}
 	public void setUE(String uE) {
 		UE = uE;
+	}
+
+	@Override
+	public String toString() {
+		return "groupe [id_groupe=" + id_groupe + ", Nom_groupe=" + Nom_groupe
+				+ ", UE=" + UE + "]";
 	}
 	
 }
