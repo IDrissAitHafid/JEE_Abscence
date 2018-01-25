@@ -20,15 +20,15 @@
 			</form>
 			<table class="table table-striped">
 				<tr>
-					<th>ID</th><th>Nom Groupe</th><th>UE</th>
+					<th>ID</th><th>Nom Groupe</th><th>UE</th><th></th><th></th>
 				</tr>
 				<c:forEach items="${model.groupes}" var="g">
 					<tr>
 						<td>${ g.id_groupe }</td>
-<%-- 						<td>${ g.Nom_groupe }</td> --%>
+						<td>${ g.nom_groupe }</td> 
 						<td>${ g.UE }</td>
-<%-- 						<td><a onclick="return confirm('Etes vous sûre?')"  href="supprime.do?id=${p.id}">Supprimer</a></td> --%>
-<%-- 						<td><a href="edit.do?id=${p.id}">Edit</a></td> --%>
+						<td><a onclick="return confirm('Etes vous sûre?')"  href="supprimeGrp.do?id=${g.id_groupe}">Supprimer</a></td> 
+						<td><a href="editGrp.do?id=${g.id_groupe}">Edit</a></td>
 					</tr>
 				</c:forEach> 
 				 

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
+
 import admin.IGroupeDao;
 import admin.IProfesseur;
 import admin.ImplGroupeDao;
@@ -44,8 +46,39 @@ public class ControleurServlet extends HttpServlet{
 			model.setGroupes(groupes);
 			req.setAttribute("model", model);
 			req.getRequestDispatcher("groupes.jsp").forward(req, resp);
+			
+		}else if(path.equals("/saisirGrp.do")){
+			req.getRequestDispatcher("ajouterGrp.jsp").forward(req, resp);
+			
+		}else if(path.equals("/ajouterGrp.do")&&(req.getMethod().equals("POST"))){
+			String nmGrp=req.getParameter("nomGrp");
+			String UE=req.getParameter("UE");
+			groupe g=groupeMetier.saveGroupe(new groupe(nmGrp, UE));
+			req.setAttribute("groupe", g);
+			req.getRequestDispatcher("ConfirmationGrp.jsp").forward(req, resp);
+		}else if(path.equals("/supprimeGrp.do")){
+			int id=Integer.parseInt(req.getParameter("id"));
+			groupeMetier.deteteGroupe(id);
+			resp.sendRedirect("chercher.do?motCle=");
+		}else if(path.equals("/editGrp.do")){
+			int id=Integer.parseInt(req.getParameter("id"));
+			groupe g=groupeMetier.getGroupe(id);
+			req.setAttribute("groupe", g);
+			req.getRequestDispatcher("editGrp.jsp").forward(req, resp);
 		}
-		
+		else if(path.equals("/editGroupe.do") && req.getMethod().equals("POST")){
+			int id=Integer.parseInt(req.getParameter("id"));
+			String nomGrp=req.getParameter("nomGrp");
+			String UE=req.getParameter("UE");
+			groupe g=new groupe(nomGrp, UE);
+			g.setId_groupe(id);
+			groupeMetier.updateGroupe(g);
+			req.setAttribute("groupe", g);
+			req.getRequestDispatcher("ConfirmationGrp.jsp").forward(req, resp);
+		}
+		else{
+			resp.sendError(resp.SC_NOT_FOUND);
+		}
 		//req.getRequestDispatcher("professeurs.jsp").forward(req,resp);
 		String path1=req.getServletPath();
 		if(path1.equals("/indexP.do")){
