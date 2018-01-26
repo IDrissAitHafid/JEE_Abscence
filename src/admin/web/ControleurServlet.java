@@ -76,9 +76,9 @@ public class ControleurServlet extends HttpServlet{
 			req.setAttribute("groupe", g);
 			req.getRequestDispatcher("ConfirmationGrp.jsp").forward(req, resp);
 		}
-		else{
-			resp.sendError(resp.SC_NOT_FOUND);
-		}
+//		else{
+//			resp.sendError(resp.SC_NOT_FOUND);
+//		}
 		//req.getRequestDispatcher("professeurs.jsp").forward(req,resp);
 		String path1=req.getServletPath();
 		if(path1.equals("/indexP.do")){

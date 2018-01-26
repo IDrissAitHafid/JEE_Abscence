@@ -20,7 +20,7 @@
 			</form>
 			<table class="table table-striped">
 				<tr>
-					<th>ID</th><th>Nom Groupe</th><th>UE</th><th></th><th></th>
+					<th>ID</th><th>Nom Groupe</th><th>UE</th><th></th><th></th>	
 				</tr>
 				<c:forEach items="${model.groupes}" var="g">
 					<tr>
