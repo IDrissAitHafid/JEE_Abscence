@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
 </head>
 <body>
-<%@include file="headerP.jsp" %>
+<%@include file="header.jsp" %>
 <div class="container col-md-8 col-md-offset-2">
 	<div class="panel panel-primary">
 		<div class="panel-heading">Editer Groupe</div>

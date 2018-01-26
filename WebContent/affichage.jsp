@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
 </head>
 <body>
-<%@include file="headerP.jsp" %>
+<%@include file="header.jsp" %>
 <div class="container col-md-10 col-md-offset-1">
 <div class="panel panel-danger">
   <div class="panel-heading">Liste des Professeurs</div>
