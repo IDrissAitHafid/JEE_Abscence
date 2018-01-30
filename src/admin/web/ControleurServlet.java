@@ -109,9 +109,30 @@ public class ControleurServlet extends HttpServlet{
 			req.setAttribute("professeur", p);
 			req.getRequestDispatcher("Confirmation.jsp").forward(req, resp);
 		}
-		
+		else if(path1.equals("/supprimerProf.do")){
+			int id=Integer.parseInt(req.getParameter("id"));
+			profMetier.Supprimer_prof(id);
+			resp.sendRedirect("indexP.do");
+			}
+		else if(path1.equals("/editProf.do")){
+			int id=Integer.parseInt(req.getParameter("id"));
+			Professeur p=profMetier.Consulter_prof(id);
+			req.setAttribute("Professeur", p);
+			req.getRequestDispatcher("editProf.jsp").forward(req, resp);
+		}
+		else if(path1.equals("/editProfesseur.do") && req.getMethod().equals("POST")){
+			int id=Integer.parseInt(req.getParameter("id"));
+			String nm=req.getParameter("nom");
+			String pnm=req.getParameter("prenom");
+			String em=req.getParameter("email");
+			String tl=req.getParameter("tel");
+			Professeur p=profMetier.Modifier_prof(new Professeur(nm,pnm,em,tl));
+			p.setId_professeur(id);
+			req.setAttribute("professeur", p);
+			req.getRequestDispatcher("Confirmation.jsp").forward(req, resp);
+		}
+		}
 	
-	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
