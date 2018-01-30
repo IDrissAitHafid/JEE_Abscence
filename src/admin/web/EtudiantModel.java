@@ -7,11 +7,32 @@ import admin.Etudiant;
 
 public class EtudiantModel {
 	private String motCleEt;
+	private String grpe;
+	private String snce;
 	private List<Etudiant> etudiants=new ArrayList<Etudiant>();
 	
+	
+
+	public String getGrpe() {
+		return grpe;
+	}
+
+	public void setGrpe(String grpe) {
+		this.grpe = grpe;
+	}
+
+	public String getSnce() {
+		return snce;
+	}
+
+	public void setSnce(String snce) {
+		this.snce = snce;
+	}
+
 	public String getMotCleEt() {
 		return motCleEt;
 	}
+	
 	public void setMotCleEt(String motCleEt) {
 		this.motCleEt = motCleEt;
 	}

@@ -115,4 +115,28 @@ public class ImplGroupeDao implements IGroupeDao{
 		
 	}
 
+	@Override
+	public List<groupe> Afficher_groupe() {
+		Connection connecton=SingletonConnection.getConnection();
+		List<groupe> groupes=new ArrayList<groupe>();
+		try {
+			PreparedStatement ps=connecton.prepareStatement
+					("SELECT * FROM Groupe");
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()){
+				groupe g=new groupe();
+				g.setId_groupe(rs.getInt("Id_groupe"));
+				g.setNom_groupe(rs.getString("Nom_groupe"));
+				g.setUE(rs.getString("UE"));
+				
+				groupes.add(g);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return groupes;
+	}
+
 }

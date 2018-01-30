@@ -9,24 +9,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
-
-
+import admin.Etudiant;
+import admin.IEtudiantDao;
 import admin.IGroupeDao;
 import admin.IProfesseur;
+import admin.ISeance;
+import admin.ISemestre;
+import admin.ImplEtudiantDao;
 import admin.ImplGroupeDao;
 import admin.Professeur;
 import admin.ProfesseurImp;
+import admin.Seance;
+import admin.SeanceImp;
+import admin.Semestre;
+import admin.SemestreImp;
 import admin.groupe;
 
 public class ControleurServlet extends HttpServlet{
 	private IGroupeDao groupeMetier;
 	private IProfesseur profMetier;
+	private ISeance seanceMetier;
+	private ISemestre semestreMetier;
+	private IEtudiantDao etudiantMetier;
 	@Override
 	public void init() throws ServletException {
 		groupeMetier=new ImplGroupeDao();
 		profMetier=new ProfesseurImp();
+		seanceMetier = new SeanceImp();
+		semestreMetier=new SemestreImp();
+		etudiantMetier=new ImplEtudiantDao();
 	}
 	
 	@Override
@@ -131,6 +142,32 @@ public class ControleurServlet extends HttpServlet{
 			req.setAttribute("professeur", p);
 			req.getRequestDispatcher("Confirmation.jsp").forward(req, resp);
 		}
+		String path2=req.getServletPath();
+		if(path2.equals("/saisirNote.do")){
+			GroupeModel modelG=new GroupeModel();
+			List<groupe> groupes=groupeMetier.Afficher_groupe();
+			modelG.setGroupes(groupes);
+			req.setAttribute("modelG", modelG);
+			SeanceModel modelS=new SeanceModel();
+			List<Seance> seances=seanceMetier.Afficher_seance();
+			modelS.setSeances(seances);
+			req.setAttribute("modelS", modelS);
+			SemestreModel modelSM=new SemestreModel();
+			List<Semestre> semestres=semestreMetier.Afficher_semestre();
+			modelSM.setSemestres(semestres);
+			req.setAttribute("modelSM", modelSM);
+			String grpe=req.getParameter("grpe");
+			String snce=req.getParameter("snce");
+			EtudiantModel modelE=new EtudiantModel();
+			modelE.setGrpe(grpe);
+			modelE.setSnce(snce);
+			List<Etudiant> etudiants=etudiantMetier.Afficher_etudiant(grpe, snce);
+			modelE.setEtudiants(etudiants);
+			req.setAttribute("modelE", modelE);
+			req.getRequestDispatcher("saisirNotes.jsp").forward(req, resp);
+			
+		}
+		
 		}
 	
 	@Override

@@ -5,24 +5,67 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Abscence</title>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 </head>
 <body>
-<div class="container">
-       <header class="jumbotron" style="background-color: #BDC3C7">
-         <div class="container">
-         </div>    
-       </header>
-         
-<table class="table table-bordered tab" style="text-align:center;">
-<tr>
-  <th>Nom Etudiant</th>
-  <th>Prénom Etudiant</th>
-  <th>Date de Naissance</th>
-  <th>Note</th>
-  <th>Abscence</th>
-</tr>
- 
- 
-</table>
- </div>
+	<p></p>
+	<div class="container">
+		<header class="jumbotron" style="background-color: #BDC3C7">
+			<div class="container">
+				<form action="saisirNote.do" method="get">
+					<label for="sel1">Séléctionner Groupe:</label> <select
+						class="form-control" id="sel1" name="grpe">
+						<c:forEach items="${modelG.groupes}" var="g">
+							<option>${g.nom_groupe}</option>
+						</c:forEach>
+					</select> <label for="sel2">Séléctionner Séance:</label> <select
+						class="form-control" id="sel2" name="snce">
+						<c:forEach items="${modelS.seances}" var="s">
+							<option>${s.nom_seance}</option>
+						</c:forEach>
+					</select> <label for="sel3">Séléctionner Semestre:</label> <select
+						class="form-control" id="sel3">
+						<c:forEach items="${modelSM.semestres}" var="sm">
+							<option>${sm.nom_semestre}</option>
+						</c:forEach>
+					</select>
+					<p></p>
+					<div>
+						<button type="submit" class="btn btn-danger">Show
+							Students</button>
+					</div>
+				</form>
+			</div>
+		</header>
+
+
+		<table class="table table-bordered tab" style="text-align: center;">
+			<tr>
+				<th>Numéro Etudiant</th>
+				<th>Nom Etudiant</th>
+				<th>Prénom Etudiant</th>
+				<th>Date de Naissance</th>
+				<th>Note</th>
+				<th>Abscence</th>
+			</tr>
+                <c:forEach items="${modelE.etudiants}" var="e">
+					<tr>
+						<td>${ e.id_etudiant }</td>
+					    <td>${ e.nom_etudiant }</td> 
+			   			<td>${ e.prenom_etudiant }</td>
+						<td>${ e.date }</td>
+						<td><input type="text" name="note" class="form-control"/></td>
+						<td>
+						   <select class="form-control" id="sel">
+							<option>justifié</option>
+							<option>non justifié</option>
+						   </select>	
+						</td>
+					</tr>
+				</c:forEach> 
+
+		</table>
+		            <div>
+						<button type="submit" class="btn btn-danger">Save</button>
+					</div>
+	</div>
