@@ -5,18 +5,18 @@ public class Etudiant {
 	private String Nom_etudiant;
 	private String Prenom_etudiant;
 	private String Date;
-	private String Id_groupe;
+	private String Nom_groupe;
 	public Etudiant() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Etudiant(String nom_etudiant, String prenom_etudiant, String date,
-			String id_groupe) {
+			String nom_groupe) {
 		super();
 		Nom_etudiant = nom_etudiant;
 		Prenom_etudiant = prenom_etudiant;
 		Date = date;
-		Id_groupe = id_groupe;
+		Nom_groupe = nom_groupe;
 	}
 	public int getId_etudiant() {
 		return Id_etudiant;
@@ -42,12 +42,14 @@ public class Etudiant {
 	public void setDate(String date) {
 		Date = date;
 	}
-	public String getId_groupe() {
-		return Id_groupe;
+	public String getNom_groupe() {
+		return Nom_groupe;
 	}
-	public void setId_groupe(String id_groupe) {
-		Id_groupe = id_groupe;
+	public void setNom_groupe(String nom_groupe) {
+		Nom_groupe = nom_groupe;
 	}
+	
+	
 	
 	
 	

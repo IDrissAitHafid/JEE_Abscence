@@ -6,13 +6,13 @@ import java.util.List;
 import admin.Etudiant;
 
 public class EtudiantModel {
-	private String motCleEt;
+	private int motCleEt;
 	private List<Etudiant> etudiants=new ArrayList<Etudiant>();
 	
-	public String getMotCleEt() {
+	public int getMotCleEt() {
 		return motCleEt;
 	}
-	public void setMotCleEt(String motCleEt) {
+	public void setMotCleEt(int motCleEt) {
 		this.motCleEt = motCleEt;
 	}
 	public List<Etudiant> getEtudiants() {

@@ -98,6 +98,7 @@ public class ImplGroupeDao implements IGroupeDao{
 		return g;
 	}
 
+	
 	@Override
 	public void deteteGroupe(int id) {
 		Connection connection=SingletonConnection.getConnection();
@@ -113,6 +114,28 @@ public class ImplGroupeDao implements IGroupeDao{
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public groupe getGroupe(String nomGrp) {
+		Connection connecton=SingletonConnection.getConnection();
+		groupe g=new groupe();
+		try {
+			PreparedStatement ps=connecton.prepareStatement
+					("SELECT * FROM Groupe WHERE Nom_groupe Like ?");
+			ps.setString(1,nomGrp);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()){
+				g.setId_groupe(rs.getInt("Id_groupe"));
+				g.setNom_groupe(rs.getString("Nom_groupe"));
+				g.setUE(rs.getString("UE"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return g;
 	}
 
 }

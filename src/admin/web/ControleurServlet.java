@@ -13,8 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
+
+
+import admin.Etudiant;
+import admin.IEtudiantDao;
 import admin.IGroupeDao;
 import admin.IProfesseur;
+import admin.ImplEtudiantDao;
 import admin.ImplGroupeDao;
 import admin.Professeur;
 import admin.ProfesseurImp;
@@ -23,10 +29,12 @@ import admin.groupe;
 public class ControleurServlet extends HttpServlet{
 	private IGroupeDao groupeMetier;
 	private IProfesseur profMetier;
+	private IEtudiantDao etudiantMetier;
 	@Override
 	public void init() throws ServletException {
 		groupeMetier=new ImplGroupeDao();
 		profMetier=new ProfesseurImp();
+		etudiantMetier=new ImplEtudiantDao();
 	}
 	
 	@Override
@@ -131,7 +139,36 @@ public class ControleurServlet extends HttpServlet{
 			req.setAttribute("professeur", p);
 			req.getRequestDispatcher("Confirmation.jsp").forward(req, resp);
 		}
+		
+		//req.getRequestDispatcher("groupes.jsp").forward(req,resp);
+				String pathEtu=req.getServletPath();
+				if(pathEtu.equals("/indexE.do")){
+					req.getRequestDispatcher("etudiants.jsp").forward(req, resp);
+				}
+				else if(pathEtu.equals("/chercherEtud.do")){
+					int motCleEt=Integer.parseInt(req.getParameter("motCleEt"));
+					EtudiantModel model=new EtudiantModel();
+					model.setMotCleEt(motCleEt);
+					List<Etudiant> etudiants=etudiantMetier.etudiantParId(motCleEt);
+					model.setEtudiants(etudiants);
+					req.setAttribute("model", model);
+					req.getRequestDispatcher("etudiants.jsp").forward(req, resp);
+					
+				}else if(pathEtu.equals("/saisirEtud.do")){
+					req.getRequestDispatcher("ajouterEtud.jsp").forward(req, resp);
+					
+				}else if(pathEtu.equals("/ajouterEtud.do")&&(req.getMethod().equals("POST"))){
+					String nmEtud=req.getParameter("nomEtud");
+					String prnmEtud=req.getParameter("prenomEtud");
+					String date=req.getParameter("date");
+					String nmGrp=req.getParameter("nomGrp");
+					
+					Etudiant e=etudiantMetier.saveEtudiant(new Etudiant(nmEtud, prnmEtud,date,nmGrp));
+					req.setAttribute("etudiant", e);
+					req.getRequestDispatcher("ConfirmationEtud.jsp").forward(req, resp);
+				}
 		}
+		
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
