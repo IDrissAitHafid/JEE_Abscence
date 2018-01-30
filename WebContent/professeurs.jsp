@@ -29,7 +29,7 @@
 			   			<td>${ p.prenom_professeur }</td>
 						<td>${ p.email }</td>
 						<td>${ p.numero_Telephone }</td>
-
+						
 					</tr>
 				</c:forEach> 
     </table>

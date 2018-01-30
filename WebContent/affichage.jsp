@@ -24,6 +24,9 @@
 			   			<td>${ p.prenom_professeur }</td>
 						<td>${ p.email }</td>
 						<td>${ p.numero_Telephone }</td>
+						<td><a onclick="return confirm('Etes vous sûre?')"  href="supprimerProf.do?id=${p.id_professeur}">Supprimer</a></td> 
+						<td><a href="editProf.do?id=${p.id_professeur}">Edit</a></td>
+						
 
 					</tr>
 				</c:forEach> 
