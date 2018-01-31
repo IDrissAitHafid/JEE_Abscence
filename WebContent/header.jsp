@@ -9,6 +9,8 @@
 			<ul class="dropdown-menu">
 				<li><a href="saisir.do">Ajouter Professeur</a></li>
 				<li><a href="chercherProf.do">Chercher Professeur</a></li>
+				<li><a href="saisirNote.do">Saisir notes</a></li>
+				<li><a href="effectuerAppel.do">Effectuer l'appel</a></li>
 			</ul>
 		</li>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"

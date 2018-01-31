@@ -8,10 +8,12 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 </head>
 <body>
+<%@include file="header.jsp" %>
 	<p></p>
 	<div class="container">
 		<header class="jumbotron" style="background-color: #BDC3C7">
 			<div class="container">
+			<h3 style="text-align:center">Effectuer l'appel</h3>
 				<form action="effectuerAppel.do" method="get">
 					<label for="sel1">Séléctionner Groupe:</label> <select
 						class="form-control" id="sel1" name="grpe">
@@ -66,7 +68,7 @@
                     			<input type="hidden" name="idE" value="${ e.id_etudiant}" class="form-control" required="required" hidden="true"/>
                     			<span></span>
                 			</div>
-						   <select  class="form-control" id="se" name="abscent" value="onchange="  onchange="this.form.submit();">
+						   <select  class="form-control" id="se" name="abscent"   onchange="this.form.submit();">
 							<option value="abscent">Abscent</option>
 							<option value="present">Present</option>
 						   </select>

@@ -14,24 +14,16 @@
   <div class="panel-heading">Confirmation</div>
   <div class="panel-body">
      <div class="form-group">
-       <label>ID Etudiant:</label>
-       <label>${etudiant.id_etudiant}</label>
+       <label>ID Groupe:</label>
+       <label>${groupe.id_groupe}</label>
      </div>
      <div class="form-group">
-       <label>Nom Etudiant:</label>
-       <label>${etudiant.nom_etudiant}</label>
+       <label>Nom Groupe:</label>
+       <label>${groupe.nom_groupe}</label>
      </div>
      <div class="form-group">
-       <label>Prenom Etudiant:</label>
-       <label>${etudiant.prenom_etudiant}</label>
-     </div>
-     <div class="form-group">
-       <label>Date:</label>
-       <label>${etudiant.date}</label>
-     </div>
-     <div class="form-group">
-       <label>Groupe:</label>
-       <label>${etudiant.nom_groupe}</label>
+       <label>UE:</label>
+       <label>${groupe.UE}</label>
      </div>
     
   </div>

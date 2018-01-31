@@ -8,10 +8,12 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 </head>
 <body>
+<%@include file="header.jsp" %>
 	<p></p>
 	<div class="container">
 		<header class="jumbotron" style="background-color: #BDC3C7">
 			<div class="container">
+			<h3 style="text-align:center">Saisir les notes</h3>
 				<form action="saisirNote.do" method="get">
 					<label for="sel1">Séléctionner Groupe:</label> <select
 						class="form-control" id="sel1" name="grpe">
@@ -56,10 +58,10 @@
 			   			<td>${ e.prenom_etudiant }</td>
 						<td>${ e.date }</td>
 						
-						<td><input type="text" name="note" class="form-control"/>
-						   <button type="submit" class="btn btn-danger">valider</button>
+						<td><input type="text" name="note" class="form-control" />
+						   <button type="submit" class="btn btn-danger" >valider</button>
 						</td>
-						
+					
 						<td>
 						   <select class="form-control" id="sel">
 							<option>justifié</option>

@@ -4,6 +4,7 @@ public class Utilisateur {
   private String Nom_utilisateur;
   private String Prenom_utilisateur;
   private String password;
+  public boolean valid;
 public String getNom_utilisateur() {
 	return Nom_utilisateur;
 }
@@ -21,6 +22,12 @@ public String getPassword() {
 }
 public void setPassword(String password) {
 	this.password = password;
+}
+public boolean isValid() {
+	return valid;
+}
+public void setValid(boolean valid) {
+	this.valid = valid;
 }
   
 }

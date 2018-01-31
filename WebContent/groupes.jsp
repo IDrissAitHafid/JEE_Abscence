@@ -10,13 +10,13 @@
 <body>
 <%@include file="header.jsp" %>
 <div class="container col-md-10 col-md-offset-1">
-	<div class="panel panel-primary">
+	<div class="panel panel-danger">
 		<div class="panel-heading">Recherche des groupes</div>
 		<div class="panel-body">
 			<form action="chercher.do">
 				<label class="control-label">Recherche</label>
 				<input id="motCle" name="motCle" value="${model.motCle}"/>
-				<button class="btn btn-primary">Chercher</button>
+				<button class="btn btn-danger">Chercher</button>
 			</form>
 			<table class="table table-striped">
 				<tr>
