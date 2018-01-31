@@ -12,7 +12,7 @@
 	<div class="container">
 		<header class="jumbotron" style="background-color: #BDC3C7">
 			<div class="container">
-				<form action="saisirNote.do" method="get">
+				<form action="effectuerAppel.do" method="get">
 					<label for="sel1">Séléctionner Groupe:</label> <select
 						class="form-control" id="sel1" name="grpe">
 						<c:forEach items="${modelG.groupes}" var="g">
@@ -38,39 +38,44 @@
 			</div>
 		</header>
 
-<form action="ajouterEval.do" method="post">
+
 		<table class="table table-bordered tab" style="text-align: center;">
 			<tr>
 				<th>Numéro Etudiant</th>
 				<th>Nom Etudiant</th>
 				<th>Prénom Etudiant</th>
 				<th>Date de Naissance</th>
-				<th>Note</th>
 				<th>Abscence</th>
 			</tr>
-			
                 <c:forEach items="${modelE.etudiants}" var="e">
 					<tr>
 						<td>${ e.id_etudiant }</td>
 					    <td>${ e.nom_etudiant }</td> 
 			   			<td>${ e.prenom_etudiant }</td>
 						<td>${ e.date }</td>
-						
-						<td><input type="text" name="note" class="form-control"/>
-						   <button type="submit" class="btn btn-danger">valider</button>
-						</td>
-						
-						<td>
-						   <select class="form-control" id="sel">
-							<option>justifié</option>
-							<option>non justifié</option>
-						   </select>	
+						<td><form id="myForm" action="effectuerAppelPost.do?" method="post">
+                			<div class="form-group">
+                    			<input type="hidden" name="grpe" value="${ modelE.grpe}" class="form-control" required="required" />
+                    			<span></span>
+                			</div>
+                			<div class="form-group">
+                    			<input type="hidden" name="snce" value="${ modelE.snce}" class="form-control" required="required" hidden="true"/>
+                    			<span></span>
+                			</div>
+                			<div class="form-group">
+                    			<input type="hidden" name="idE" value="${ e.id_etudiant}" class="form-control" required="required" hidden="true"/>
+                    			<span></span>
+                			</div>
+						   <select  class="form-control" id="se" name="abscent" value="onchange="  onchange="this.form.submit();">
+							<option value="abscent">Abscent</option>
+							<option value="present">Present</option>
+						   </select>
+						   </form>	
 						</td>
 					</tr>
 				</c:forEach> 
-			
+
 		</table>
-		</form>
 		            <div>
 						<button type="submit" class="btn btn-danger">Save</button>
 					</div>
