@@ -18,12 +18,18 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import admin.Etudiant;
+import admin.Etudier;
+import admin.EtudierImpl;
+import admin.Evaluation;
 import admin.IEtudiantDao;
+import admin.IEtudier;
+import admin.IEvaluation;
 import admin.IGroupeDao;
 import admin.IProfesseur;
 import admin.ISeance;
 import admin.ISemestre;
 import admin.ImplEtudiantDao;
+import admin.ImplEvaluation;
 import admin.ImplGroupeDao;
 import admin.Professeur;
 import admin.ProfesseurImp;
@@ -40,6 +46,8 @@ public class ControleurServlet extends HttpServlet{
 	private ISemestre semestreMetier;
 
 	private IEtudiantDao etudiantMetier;
+	private IEtudier etudierMetier;
+	private IEvaluation evaluationMetier;
 	@Override
 	public void init() throws ServletException {
 		groupeMetier=new ImplGroupeDao();
@@ -47,6 +55,8 @@ public class ControleurServlet extends HttpServlet{
 		seanceMetier = new SeanceImp();
 		semestreMetier=new SemestreImp();
 		etudiantMetier=new ImplEtudiantDao();
+		etudierMetier=new EtudierImpl();
+		evaluationMetier=new ImplEvaluation();
 	}
 	
 	@Override
@@ -233,7 +243,94 @@ public class ControleurServlet extends HttpServlet{
 			req.setAttribute("modelE", modelE);
 			req.getRequestDispatcher("saisirNotes.jsp").forward(req, resp);
 			
+		}else if(path2.equals("/ajouterEval.do")&&(req.getMethod().equals("POST"))){
+			GroupeModel modelG=new GroupeModel();
+			List<groupe> groupes=groupeMetier.Afficher_groupe();
+			modelG.setGroupes(groupes);
+			req.setAttribute("modelG", modelG);
+			SeanceModel modelS=new SeanceModel();
+			List<Seance> seances=seanceMetier.Afficher_seance();
+			modelS.setSeances(seances);
+			req.setAttribute("modelS", modelS);
+			SemestreModel modelSM=new SemestreModel();
+			List<Semestre> semestres=semestreMetier.Afficher_semestre();
+			modelSM.setSemestres(semestres);
+			req.setAttribute("modelSM", modelSM);
+			String grpe=req.getParameter("grpe");
+			String snce=req.getParameter("snce");
+			EtudiantModel modelE=new EtudiantModel();
+			modelE.setGrpe(grpe);
+			modelE.setSnce(snce);
+			List<Etudiant> etudiants=etudiantMetier.Afficher_etudiant(grpe, snce);
+			modelE.setEtudiants(etudiants);
+			req.setAttribute("modelE", modelE);
+			double note=Double.parseDouble(req.getParameter("note"));
+			//int idProf=Integer.parseInt(req.getParameter("idProf"));
+			Evaluation ev=evaluationMetier.saveNote(new Evaluation(note,1));
+			req.setAttribute("evaluation", ev);
+			req.getRequestDispatcher("saisirNotes.jsp").forward(req, resp);
 		}
+		if(path2.equals("/effectuerAppel.do") ){
+			GroupeModel modelG=new GroupeModel();
+			List<groupe> groupes=groupeMetier.Afficher_groupe();
+			modelG.setGroupes(groupes);
+			req.setAttribute("modelG", modelG);
+			SeanceModel modelS=new SeanceModel();
+			List<Seance> seances=seanceMetier.Afficher_seance();
+			modelS.setSeances(seances);
+			req.setAttribute("modelS", modelS);
+			SemestreModel modelSM=new SemestreModel();
+			List<Semestre> semestres=semestreMetier.Afficher_semestre();
+			modelSM.setSemestres(semestres);
+			req.setAttribute("modelSM", modelSM);
+			String grpe=req.getParameter("grpe");
+			String snce=req.getParameter("snce");
+			EtudiantModel modelE=new EtudiantModel();
+			modelE.setGrpe(grpe);
+			modelE.setSnce(snce);
+			List<Etudiant> etudiants=etudiantMetier.Afficher_etudiant(grpe, snce);
+			modelE.setEtudiants(etudiants);
+			req.setAttribute("modelE", modelE);
+			//int id=Integer.parseInt(req.getParameter("idE"));
+			//int id=1;
+			//Etudier et=etudierMetier.getEtudier(id);
+			//req.setAttribute("Etudier", et);
+			req.getRequestDispatcher("effectuerAppel.jsp").forward(req, resp);
+			
+		}
+		if(path2.equals("/effectuerAppelPost.do")&& req.getMethod().equals("POST") ){
+			GroupeModel modelG=new GroupeModel();
+			List<groupe> groupes=groupeMetier.Afficher_groupe();
+			modelG.setGroupes(groupes);
+			req.setAttribute("modelG", modelG);
+			SeanceModel modelS=new SeanceModel();
+			List<Seance> seances=seanceMetier.Afficher_seance();
+			modelS.setSeances(seances);
+			req.setAttribute("modelS", modelS);
+			SemestreModel modelSM=new SemestreModel();
+			List<Semestre> semestres=semestreMetier.Afficher_semestre();
+			modelSM.setSemestres(semestres);
+			req.setAttribute("modelSM", modelSM);
+			String grpe=req.getParameter("grpe");
+			String snce=req.getParameter("snce");
+			EtudiantModel modelE=new EtudiantModel();
+			modelE.setGrpe(grpe);
+			modelE.setSnce(snce);
+			List<Etudiant> etudiants=etudiantMetier.Afficher_etudiant(grpe, snce);
+			modelE.setEtudiants(etudiants);
+			req.setAttribute("modelE", modelE);
+			int id=Integer.parseInt(req.getParameter("idE"));
+			//int idSeance=Integer.parseInt(req.getParameter("idSeance"));
+			String abs=req.getParameter("abscent");
+			System.out.println(abs);
+		    Etudier et=new Etudier(abs,snce,id);
+			etudierMetier.updateAbscence(et);
+			req.setAttribute("Etudier", et);
+			req.getRequestDispatcher("effectuerAppel.jsp").forward(req, resp);
+			
+		}
+		
+		
 		
 		}
 		

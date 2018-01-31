@@ -31,4 +31,27 @@ public class SeanceImp implements ISeance {
 		return seances;
 	}
 	
+	@Override
+	public Seance getSeance(String nomSnce) {
+		Connection connecton=SingletonConnection.getConnection();
+		Seance s=new Seance();
+		try {
+			PreparedStatement ps=connecton.prepareStatement
+					("SELECT * FROM Seance WHERE nom_seance Like ?");
+			ps.setString(1,nomSnce);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()){
+				s.setId_seance(rs.getInt("Id_seance"));
+				s.setNom_seance(rs.getString("Nom_seance"));
+				s.setDate_seance(rs.getString("Date_seance"));
+				s.setId_semestre(rs.getInt("Id_semestre"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return s;
+	}
+	
 }
