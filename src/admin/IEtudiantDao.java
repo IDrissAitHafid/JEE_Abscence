@@ -5,7 +5,7 @@ import java.util.List;
 public interface IEtudiantDao {
 	public List<Etudiant> Afficher_etudiant(String groupe,String seance);
 	public Etudiant saveEtudiant(Etudiant e);
-	public List<Etudiant> etudiantParId(int id);
+	public List<Etudiant> etudiantParMC(String mcE);
 	public Etudiant getEtudiant(int id);
 	public Etudiant updateEtudiant(Etudiant e);
 	public void deteteEtudiant(int id);

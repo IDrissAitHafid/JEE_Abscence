@@ -13,25 +13,25 @@
 	<div class="panel panel-danger">
 		<div class="panel-heading">Editer Professeur</div>
 		<div class="panel-body">
-			<form action="editProfesseur.do?id=${professeur.id_professeur}" method="POST">
+			<form action="editProfesseur.do?id=${Professeur.id_professeur}" method="POST">
 			    <div class="form-group">
                     <label class="control-label">Nom Professeur:</label>
-                    <input type="text" name="nom" value="${professeur.nom_professeur}" class="form-control" required="required"/>
+                    <input type="text" name="nom" value="${Professeur.nom_professeur}" class="form-control" required="required"/>
                     <span></span>
                 </div>
 				<div class="form-group">
                   <label class="control-label">Prénom Professeur:</label>
-                  <input type="text" name="prenom" value="${professeur.prenom_professeur}" class="form-control" />
+                  <input type="text" name="prenom" value="${Professeur.prenom_professeur}" class="form-control" />
                   <span></span>
                 </div>
                 <div class="form-group">
                   <label class="control-label">Email:</label>
-                  <input type="text" name="email" value="${professeur.email}" class="form-control"/>
+                  <input type="text" name="email" value="${Professeur.email}" class="form-control"/>
                   <span></span>
                </div>
                <div class="form-group">
                   <label class="control-label">Numéro de Téléphone:</label>
-                  <input type="text" name="tel" value="${professeur.numero_Telephone}" class="form-control"/>
+                  <input type="text" name="tel" value="${Professeur.numero_Telephone}" class="form-control"/>
                   <span></span>
                </div>
 				<button type="submit" class="btn btn-danger">Editer</button>

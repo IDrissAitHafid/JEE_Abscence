@@ -64,7 +64,7 @@ public class ImplGroupeDao implements IGroupeDao{
 		try {
 			PreparedStatement ps=connecton.prepareStatement
 					("SELECT * FROM Groupe WHERE Id_groupe Like ?");
-			ps.setLong(1,id);
+			ps.setInt(1,id);
 			ResultSet rs=ps.executeQuery();
 			if(rs.next()){
 				g.setId_groupe(rs.getInt("Id_groupe"));
@@ -116,21 +116,7 @@ public class ImplGroupeDao implements IGroupeDao{
 		
 	}
 
-	@Override
-<<<<<<< HEAD
-	public groupe getGroupe(String nomGrp) {
-		Connection connecton=SingletonConnection.getConnection();
-		groupe g=new groupe();
-		try {
-			PreparedStatement ps=connecton.prepareStatement
-					("SELECT * FROM Groupe WHERE Nom_groupe Like ?");
-			ps.setString(1,nomGrp);
-			ResultSet rs=ps.executeQuery();
-			if(rs.next()){
-				g.setId_groupe(rs.getInt("Id_groupe"));
-				g.setNom_groupe(rs.getString("Nom_groupe"));
-				g.setUE(rs.getString("UE"));
-=======
+	@Override				
 	public List<groupe> Afficher_groupe() {
 		Connection connecton=SingletonConnection.getConnection();
 		List<groupe> groupes=new ArrayList<groupe>();
@@ -145,18 +131,33 @@ public class ImplGroupeDao implements IGroupeDao{
 				g.setUE(rs.getString("UE"));
 				
 				groupes.add(g);
->>>>>>> 0c0cc33a3515aba9c1fa74b5c6b201eb4dd93e94
+			}
+		} catch(SQLException e){
+			e.printStackTrace();
+		}
+		return groupes;
+		}
+
+	@Override
+	public groupe getGroupe(String nomGrp) {
+		Connection connecton=SingletonConnection.getConnection();
+		groupe g=new groupe();
+		try {
+			PreparedStatement ps=connecton.prepareStatement
+					("SELECT * FROM Groupe WHERE nom_groupe Like ?");
+			ps.setString(1,nomGrp);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()){
+				g.setId_groupe(rs.getInt("Id_groupe"));
+				g.setNom_groupe(rs.getString("Nom_groupe"));
+				g.setUE(rs.getString("UE"));
 			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
 		return g;
-=======
-		return groupes;
->>>>>>> 0c0cc33a3515aba9c1fa74b5c6b201eb4dd93e94
 	}
-
+		
 }

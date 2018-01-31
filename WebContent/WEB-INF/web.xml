@@ -5,8 +5,16 @@
   	<servlet-name>cs</servlet-name>
   	<servlet-class>admin.web.ControleurServlet</servlet-class>
   </servlet>
+  <servlet>
+	<servlet-name>Connexion</servlet-name>
+	<servlet-class>admin.web.Connexion</servlet-class>
+</servlet>
   <servlet-mapping>
   	<servlet-name>cs</servlet-name>
   	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+	<servlet-name>Connexion</servlet-name>
+	<url-pattern>/connexion</url-pattern>
+</servlet-mapping>
 </web-app>

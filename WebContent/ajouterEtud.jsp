@@ -32,7 +32,7 @@
 	     <div class="form-group">
 	       <label class="control-label">Groupe:</label>
 	       <select class="form-control" name="nomGrp" id="sel3">
-	       	<c:forEach items="${model.groupe}" var="g">
+	       	<c:forEach items="${modelG.groupes}" var="g">
 	       		  <option>${g.nom_groupe}</option>
 			</c:forEach>
 	       </select>

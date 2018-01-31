@@ -28,9 +28,9 @@
 						<td>${ e.nom_etudiant }</td> 
 						<td>${ e.prenom_etudiant }</td>
 						<td>${ e.date }</td>
-						<td>${ e.id_groupe }</td>
-						<td><a onclick="return confirm('Etes vous sûre?')"  href="supprimeEtu.do?id=${e.etudiant}">Supprimer</a></td> 
-						<td><a href="editEtu.do?id=${e.etudiant}">Edit</a></td>
+						<td>${ e.nom_groupe }</td>
+ 						<td><a onclick="return confirm('Etes vous sûre?')"  href="supprimerEtud.do?id=${e.id_etudiant}">Supprimer</a></td> 
+ 						<td><a href="editEtud.do?id=${e.id_etudiant}">Edit</a></td> 
 					</tr>
 				</c:forEach> 
 				 

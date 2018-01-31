@@ -84,13 +84,16 @@ public class ProfesseurImp implements IProfesseur {
 	public Professeur Modifier_prof(Professeur p) {
 		Connection connection=SingletonConnection.getConnection();
 		try {
+			System.out.println("aaaaaa");
 			PreparedStatement ps=connection.prepareStatement
 			("UPDATE PROFESSEUR SET NOM_PROFESSEUR=?,PRENOM_PROFESSEUR=?, EMAIL=?,NUMERO_TELEPHONE=? WHERE ID_PROFESSEUR=?");
+			System.out.println("bbbbbb");
 			ps.setString(1,p.getNom_professeur());
 			ps.setString(2,p.getPrenom_professeur());
 			ps.setString(3,p.getEmail());
 			ps.setString(4,p.getNumero_Telephone());
 			ps.setInt(5,p.getId_professeur());
+			System.out.println("cccccccc");
 			ps.executeUpdate();
 			
 			ps.close();

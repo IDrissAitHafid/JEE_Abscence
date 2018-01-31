@@ -20,7 +20,7 @@
     </form>
     <table class="table table-striped">
     <tr>
-     <th>ID Professeur</th><th>Nom Professeur</th><th>Prénom Professeur</th><th>Email</th><th>Numéro Téléphone</th>
+     <th>ID Professeur</th><th>Nom Professeur</th><th>Prénom Professeur</th><th>Email</th><th>Numéro Téléphone</th><th></th><th></th>
     </tr>
     <c:forEach items="${modelP.professeurs}" var="p">
 					<tr>
@@ -29,7 +29,8 @@
 			   			<td>${ p.prenom_professeur }</td>
 						<td>${ p.email }</td>
 						<td>${ p.numero_Telephone }</td>
-						
+						<td><a onclick="return confirm('Etes vous sûre?')"  href="supprimerProf.do?id=${p.id_professeur}">Supprimer</a></td> 
+						<td><a href="editProf.do?id=${p.id_professeur}">Edit</a></td>
 					</tr>
 				</c:forEach> 
     </table>

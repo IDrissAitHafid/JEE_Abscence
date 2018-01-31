@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD
 
 
 
@@ -17,17 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-=======
->>>>>>> 0c0cc33a3515aba9c1fa74b5c6b201eb4dd93e94
+
 import admin.Etudiant;
 import admin.IEtudiantDao;
 import admin.IGroupeDao;
 import admin.IProfesseur;
-<<<<<<< HEAD
-=======
 import admin.ISeance;
 import admin.ISemestre;
->>>>>>> 0c0cc33a3515aba9c1fa74b5c6b201eb4dd93e94
 import admin.ImplEtudiantDao;
 import admin.ImplGroupeDao;
 import admin.Professeur;
@@ -41,21 +36,16 @@ import admin.groupe;
 public class ControleurServlet extends HttpServlet{
 	private IGroupeDao groupeMetier;
 	private IProfesseur profMetier;
-<<<<<<< HEAD
-=======
 	private ISeance seanceMetier;
 	private ISemestre semestreMetier;
->>>>>>> 0c0cc33a3515aba9c1fa74b5c6b201eb4dd93e94
+
 	private IEtudiantDao etudiantMetier;
 	@Override
 	public void init() throws ServletException {
 		groupeMetier=new ImplGroupeDao();
 		profMetier=new ProfesseurImp();
-<<<<<<< HEAD
-=======
 		seanceMetier = new SeanceImp();
 		semestreMetier=new SemestreImp();
->>>>>>> 0c0cc33a3515aba9c1fa74b5c6b201eb4dd93e94
 		etudiantMetier=new ImplEtudiantDao();
 	}
 	
@@ -142,7 +132,7 @@ public class ControleurServlet extends HttpServlet{
 		else if(path1.equals("/supprimerProf.do")){
 			int id=Integer.parseInt(req.getParameter("id"));
 			profMetier.Supprimer_prof(id);
-			resp.sendRedirect("indexP.do");
+			resp.sendRedirect("chercherProf.do?motCle1=");
 			}
 		else if(path1.equals("/editProf.do")){
 			int id=Integer.parseInt(req.getParameter("id"));
@@ -156,12 +146,14 @@ public class ControleurServlet extends HttpServlet{
 			String pnm=req.getParameter("prenom");
 			String em=req.getParameter("email");
 			String tl=req.getParameter("tel");
-			Professeur p=profMetier.Modifier_prof(new Professeur(nm,pnm,em,tl));
+			Professeur p=new Professeur(nm,pnm,em,tl);
 			p.setId_professeur(id);
+			profMetier.Modifier_prof(p);
 			req.setAttribute("professeur", p);
 			req.getRequestDispatcher("Confirmation.jsp").forward(req, resp);
+			
 		}
-<<<<<<< HEAD
+
 		
 		//req.getRequestDispatcher("groupes.jsp").forward(req,resp);
 				String pathEtu=req.getServletPath();
@@ -169,15 +161,19 @@ public class ControleurServlet extends HttpServlet{
 					req.getRequestDispatcher("etudiants.jsp").forward(req, resp);
 				}
 				else if(pathEtu.equals("/chercherEtud.do")){
-					int motCleEt=Integer.parseInt(req.getParameter("motCleEt"));
+					String motCleEt=req.getParameter("motCleEt");
 					EtudiantModel model=new EtudiantModel();
 					model.setMotCleEt(motCleEt);
-					List<Etudiant> etudiants=etudiantMetier.etudiantParId(motCleEt);
+					List<Etudiant> etudiants=etudiantMetier.etudiantParMC("%"+motCleEt+"%");
 					model.setEtudiants(etudiants);
 					req.setAttribute("model", model);
 					req.getRequestDispatcher("etudiants.jsp").forward(req, resp);
 					
 				}else if(pathEtu.equals("/saisirEtud.do")){
+					GroupeModel modelG=new GroupeModel();
+					List<groupe> groupes=groupeMetier.Afficher_groupe();
+					modelG.setGroupes(groupes);
+					req.setAttribute("modelG", modelG);
 					req.getRequestDispatcher("ajouterEtud.jsp").forward(req, resp);
 					
 				}else if(pathEtu.equals("/ajouterEtud.do")&&(req.getMethod().equals("POST"))){
@@ -189,8 +185,30 @@ public class ControleurServlet extends HttpServlet{
 					Etudiant e=etudiantMetier.saveEtudiant(new Etudiant(nmEtud, prnmEtud,date,nmGrp));
 					req.setAttribute("etudiant", e);
 					req.getRequestDispatcher("ConfirmationEtud.jsp").forward(req, resp);
+				}else if(path1.equals("/supprimerEtud.do")){
+					int id=Integer.parseInt(req.getParameter("id"));
+					etudiantMetier.deteteEtudiant(id);
+					resp.sendRedirect("chercherEtud.do?motCleEt=");
+					}
+				else if(path1.equals("/editEtud.do")){
+					int id=Integer.parseInt(req.getParameter("id"));
+					Etudiant e=etudiantMetier.getEtudiant(id);
+					req.setAttribute("etudiant", e);
+					req.getRequestDispatcher("editEtud.jsp").forward(req, resp);
 				}
-=======
+				else if(path1.equals("/editEtudiant.do") && req.getMethod().equals("POST")){
+					int id=Integer.parseInt(req.getParameter("id"));
+					String nm=req.getParameter("nomEtud");
+					String pnm=req.getParameter("prenomEtud");
+					String date=req.getParameter("date");
+					String nmGrp=req.getParameter("nomGrp");
+					Etudiant e=new Etudiant(nm, pnm, date, nmGrp);
+					e.setId_etudiant(id);
+					etudiantMetier.updateEtudiant(e);
+					req.setAttribute("etudiant", e);
+					req.getRequestDispatcher("ConfirmationEtud.jsp").forward(req, resp);
+				}
+
 		String path2=req.getServletPath();
 		if(path2.equals("/saisirNote.do")){
 			GroupeModel modelG=new GroupeModel();
@@ -217,7 +235,6 @@ public class ControleurServlet extends HttpServlet{
 			
 		}
 		
->>>>>>> 0c0cc33a3515aba9c1fa74b5c6b201eb4dd93e94
 		}
 		
 	

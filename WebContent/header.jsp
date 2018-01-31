@@ -7,15 +7,22 @@
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown">Professeur <span class="caret"></span></a>
 			<ul class="dropdown-menu">
-				<li><a href="saisir.do">Ajout Professeur</a></li>
+				<li><a href="saisir.do">Ajouter Professeur</a></li>
 				<li><a href="chercherProf.do">Chercher Professeur</a></li>
 			</ul>
 		</li>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown">Groupe <span class="caret"></span></a>
 			<ul class="dropdown-menu">
-				<li><a href="saisirGrp.do">Ajout groupe</a></li>
+				<li><a href="saisirGrp.do">Ajouter groupe</a></li>
 				<li><a href="chercher.do">Chercher groupe</a></li>
+			</ul>
+		</li>
+		<li class="dropdown"><a href="#" class="dropdown-toggle"
+			data-toggle="dropdown">Etudiant <span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li><a href="saisirEtud.do">Ajouter etudiant</a></li>
+				<li><a href="chercherEtud.do">Chercher etudiant</a></li>
 			</ul>
 		</li>
 	</ul>
